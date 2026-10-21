@@ -1,0 +1,45 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pad_ml_product_mbb"
+version = "0.0.1"
+description = "A short description of the project."
+authors = [
+  { name = "Boris Muratshin" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+dependencies = [
+    "ipython",
+    "jupyterlab",
+    "matplotlib",
+    "notebook",
+    "numpy",
+    "pandas",
+    "pip",
+    "pytest",
+    "python-dotenv",
+    "ruff",
+    "scikit-learn",
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["pad_ml_product_mbb"]
+include = ["pyproject.toml", "pad_ml_product_mbb/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["pad_ml_product_mbb"]
+force-sort-within-sections = true
+
