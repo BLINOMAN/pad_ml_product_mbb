@@ -1,45 +1,53 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
-name = "pad_ml_product_mbb"
-version = "0.0.1"
-description = "A short description of the project."
-authors = [
-  { name = "Boris Muratshin" },
-]
-
+name = "pad-ml-product-mbb"
+version = "0.1.0"
+description = "Домашка №1"
 readme = "README.md"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    
+authors = [
+    { name = "Boris", email = "sanyko724@gmail.com" }
 ]
-dependencies = [
-    "ipython",
-    "jupyterlab",
-    "matplotlib",
-    "notebook",
-    "numpy",
-    "pandas",
-    "pip",
-    "pytest",
-    "python-dotenv",
-    "ruff",
-    "scikit-learn",
-]
-requires-python = "~=3.10.0"
+requires-python = ">=3.11"
+dependencies = []
 
+[project.scripts]
+pad-ml-product-mbb = "pad_ml_product_mbb:main"
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.3.0",       # Линтер и форматтер (замена flake8/black)
+    "mypy>=1.10.0",     # Тайпчекер
+    "pre-commit>=3.7.0", # Менеджер git-хуков
+]
 
 [tool.ruff]
 line-length = 99
-src = ["pad_ml_product_mbb"]
-include = ["pyproject.toml", "pad_ml_product_mbb/**/*.py"]
 
-[tool.ruff.lint]
-extend-select = ["I"]  # Add import sorting
+lint.select = [
+    "E",
+    "W",
+    "B",
+    "UP",
+    "I",
+    "SIM"
+]
 
-[tool.ruff.lint.isort]
-known-first-party = ["pad_ml_product_mbb"]
-force-sort-within-sections = true
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
 
+
+[tool.mypy]
+strict = true
+
+exclude = [
+    '(^|/)\.venv/',
+    '(^|/)\.git/',
+    '(^|/)__pycache__/',
+    '(^|/)\.mypy_cache/',
+    '(^|/)\.ruff_cache/',
+]
+
+ignore_missing_imports = true
